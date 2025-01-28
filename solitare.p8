@@ -3,6 +3,28 @@ version 42
 __lua__
 
 #include cards.lua
+#include Card.lua
+
+function render_all_cards()
+    -- Define ranks and suits
+    local ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "j", "q", "k", "a"}
+    local suits = {"s", "h", "d", "c"} -- spades, hearts, diamonds, clubs
+
+    -- Loop through suits and ranks
+    for i = 1, #suits do
+        for j = 1, #ranks do
+            -- Calculate position for each card
+            local x = 16 * (j - 1) + 4 -- 16 pixels per card horizontally, with 4px margin
+            local y = 24 * (i - 1) + 4 -- 24 pixels per card vertically, with 4px margin
+
+            -- Create a card object
+            local card = Card:new(ranks[j], suits[i], x, y)
+            
+            -- Draw the card
+            card:draw()
+        end
+    end
+end
 
 ms_x = 63
 ms_y = 63
